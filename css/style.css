@@ -45,8 +45,6 @@
     right: 0;
     
 }
-
-
 #table_client, #table_bankacc, #table_trans
 {
     margin-top:100%;
@@ -58,3 +56,6 @@
   margin-left: 10%;
 }
 
+#detalji {
+    color: white;
+}

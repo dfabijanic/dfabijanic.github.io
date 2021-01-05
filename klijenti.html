@@ -40,11 +40,64 @@
           <input  class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Pretraži</button>
         </form>
+        <button type="button" class="btn btn-" data-bs-toggle="modal" data-bs-target="#myModal">
+          + Novi klijent
+        </button>
       </div>
     </nav>
   </div>
+  
+  <div id="myModal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Novi klijent</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="klijentOib" class="form-label">OIB</label>
+              <input class="form-control" id="klijentOib">
+            </div>
+            <div class="mb-3">
+              <label for="klijentPrezime" class="form-label">Prezime</label>
+              <input class="form-control" id="klijentPrezime">
+            </div>
+            <div class="mb-3">
+              <label for="klijentIme" class="form-label">Ime</label>
+              <input class="form-control" id="klijentIme">
+            </div>
+            <p>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTekuci" aria-expanded="false" aria-controls="collapseExample">
+                +Tekući račun
+              </button>
+            </p>
+            <div class="collapse" id="collapseTekuci">
+              <div class="card card-body">
+                Broj računa
+              </div>
+            </div>
+            <p>
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZiro" aria-expanded="false" aria-controls="collapseExample">
+                +Žiro račun
+              </button>
+            </p>          
+            <div class="collapse" id="collapseZiro">
+              <div class="card card-body">
+                Broj računa
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Spremi</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <table id="table_client" class="table table-striped table-hover table-bordered">
+  <table id="table_client" class="table table-responsive table-striped table-hover table-bordered">
     <thead>
       <tr>
         <th scope="col">Redni broj</th>
@@ -61,9 +114,9 @@
         <td>Mark</td>
         <td>Otto</td>
         <td><div>
-            <button type="button" class="btn btn-secondary actions" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Detalji</button>
+            <button type="button" class="btn btn-info actions" data-bs-toggle="modal" id="detalji" data-bs-target="#staticBackdrop">Detalji</button>
             <button type="button" class="btn btn-secondary actions">Uredi</button>
-            <button type="button" class="btn btn-secondary actions">Izbriši</button>
+            <button type="button" class="btn btn-danger actions">Izbriši</button>
           </div></td>
       </tr>
       <tr>
