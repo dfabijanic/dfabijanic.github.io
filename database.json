@@ -1,0 +1,37 @@
+{
+    "Klijenti":  
+    [
+        {
+            "OIBKlijenta": {
+            "Prezime": "Fabijanic",
+            "Ime": "Dora"
+        }
+    }
+    ],
+
+    "BankovniRacuni":
+    [
+        {
+            "BrojRacuna":
+            {
+                "TipRacuna": "Tekući",
+                "OIBKlijenta": "120304856",
+                "StanjeRacuna":290000
+            }
+        }
+    ],
+    
+    "Transakcije":[
+        {
+            "BrojTranakcije":
+            {
+                "Datum": "12.1.2002",
+                "TipTransakcije": "Isplata",
+                "Broj računa": "13456789",
+                "OIBKlijenta": "120304856",
+                "Iznos": "1000"
+            }
+        }
+
+    ]
+}
