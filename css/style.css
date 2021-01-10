@@ -59,3 +59,20 @@
 #detalji {
     color: white;
 }
+#modalclientback {
+    background-image: url("../images/newclient.v1.jpg");
+    padding-top: 190px;
+}
+#formNewClient {
+    margin-left:5%;
+    margin-top: 3%;
+    margin-bottom: 8%;
+}
+#formClient {
+    margin-left:5%;
+    margin-right: 5%;
+}
+
+#acc_detail_name {
+    margin:2%;
+}

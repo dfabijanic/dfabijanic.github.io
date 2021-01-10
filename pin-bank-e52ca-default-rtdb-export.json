@@ -1,0 +1,39 @@
+{
+  "BankovniRacuni" : {
+    "1452369856321456" : {
+      "OIBKlijenta" : "12030485621",
+      "StanjeRacuna" : 290000,
+      "TipRacuna" : "2"
+    }
+  },
+  "Klijenti" : {
+    "12030485621" : {
+      "Ime" : "Dora",
+      "Prezime" : "Fabijanic"
+    },
+    "45239685742" : {
+      "Ime" : "Mario",
+      "Prezime" : "Marulic"
+    },
+    "758931524698" : {
+      "Ime" : "Ana",
+      "Prezime" : "Anić"
+    }
+  },
+  "TipRacuna" : {
+    "Tekuci" : 1,
+    "Ziro" : 2
+  },
+  "TipTransakcije" : {
+    "Isplata" : 2,
+    "Uplata" : 1
+  },
+  "Transakcije" : {
+    "1452" : {
+      "BrojRacuna" : "12030485621",
+      "Datum" : "12.1.2002",
+      "Iznos" : "1000",
+      "TipTransakcije" : "2"
+    }
+  }
+}

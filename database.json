@@ -1,37 +1,43 @@
 {
     "Klijenti":  
-    [
-        {
-            "OIBKlijenta": {
-            "Prezime": "Fabijanic",
-            "Ime": "Dora"
+      {
+        "12030485621": {
+          "Prezime": "Fabijanic",
+          "Ime": "Dora"
         }
-    }
-    ],
+      },
 
     "BankovniRacuni":
-    [
-        {
-            "BrojRacuna":
-            {
-                "TipRacuna": "Tekući",
-                "OIBKlijenta": "120304856",
-                "StanjeRacuna":290000
-            }
-        }
-    ],
     
-    "Transakcije":[
         {
-            "BrojTranakcije":
-            {
-                "Datum": "12.1.2002",
-                "TipTransakcije": "Isplata",
-                "Broj računa": "13456789",
-                "OIBKlijenta": "120304856",
-                "Iznos": "1000"
-            }
+            "1452369856321456": {
+            "TipRacuna": "1",
+            "OIBKlijenta": "12030485621",
+            "StanjeRacuna": 290000
+          }
         }
+    ,
 
-    ]
+  "Transakcije": 
+    {
+      "1452": {
+        "Datum": "12.1.2002",
+        "TipTransakcije": "2",
+        "Broj računa": "12030485621",
+        "Iznos": "1000"
+      }
+    }
+
+  ,
+
+  "TipRacuna": {
+    "Tekuci": 1,
+    "Ziro": 2
+  },
+
+  "TipTransakcije": {
+    "Uplata": 1,
+    "Isplata": 2
+  }
+  
 }

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <!-- Navbar + logo + search -->
   <div class="container">
     <div id ="logo"> 
       <img src="images/bank.png" alt="Bank logo">
@@ -40,10 +42,46 @@
           <input  class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Pretraži</button>
         </form>
+        <button type="button" class="btn btn-" data-bs-toggle="modal" data-bs-target="#myModalAcc">
+          + Novi račun
+        </button>
       </div>
     </nav>
   </div>
 
+  <!-- modal NOVI RAČUN -->
+  <div id="myModalAcc" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" id="modalclientback">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2 id="formNewClient" class="title">Novi bankovni račun</h2>
+          <form id="formClient">
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputAccOIB" placeholder="Horvat">
+              <label for="floatingInput">OIB klijenta</label>
+            </div>
+            <select id="selectTypeAcc" class="form-select form-select-lg mb-3" aria-label="Default select example">
+              <option selected>Tip računa</option>
+              <option value="1">Tekući</option>
+              <option value="2">Žiro</option>
+            </select>
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputNumberAcc" placeholder="Horvat">
+              <label for="floatingInput">Broj Računa</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" onclick="AddBankingAcc()" class="btn btn-primary">Spremi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tablica bankovnih računa -->
   <table id="table_bankacc" class="table table-striped table-hover table-responsive table-bordered">
     <thead>
         <tr>
@@ -56,46 +94,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>01243678</td>
-          <td>Tekući</td>
-          <td>13434564</td>
-          <td>-10000</td>
-          <td><div>
-              <button type="button" id="detalji" class="btn btn-secondary actions">Detalji</button>
-              <button type="button" class="btn btn-secondary actions">Uredi</button>
-              <button type="button" class="btn btn-secondary actions">Izbriši</button>
-            </div></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>01253771</td>
-          <td>Žiro</td>
-          <td>34256789</td>
-          <td>29000</td>
-          <td><div>
-              <button type="button" class="btn btn-secondary actions">Detalji</button>
-              <button type="button" class="btn btn-secondary actions">Uredi</button>
-              <button type="button" class="btn btn-secondary actions">Izbriši</button>
-            </div></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>01373648</td>
-          <td>Žiro</td>
-          <td>54432567</td>
-          <td>1000</td>
-          <td><div>
-              <button type="button" class="btn btn-secondary actions">Detalji</button>
-              <button type="button" class="btn btn-secondary actions">Uredi</button>
-              <button type="button" class="btn btn-secondary actions">Izbriši</button>
-            </div></td>
-        </tr>
       </tbody>
     </table>
-    
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+
+    <!-- modal DETALJI O BANKOVNOM RAČUNU -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Detalji o bankovnom računu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label class="form-label">OIB klijenta</label>
+            <input type="text" class="form-control" id="detailsOIB" readonly />
+            <label class="form-label">Broj računa</label>
+            <input type="text" class="form-control" id="detailsNumberAcc" readonly />
+            <label class="form-label">Tip računa</label>
+            <input type="text" class="form-control" id="detailsTypeAcc" readonly />
+            <label class="form-label">Stanje računa</label>
+            <input type="text" class="form-control" id="detailsStateAcc" readonly />            
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- script -->
+  <script src="assets/plugins/jquery/jquery.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/klijenti.js"></script>
 </body>
 </html>
