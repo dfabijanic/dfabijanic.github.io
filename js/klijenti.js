@@ -11,7 +11,7 @@ $(document).ready(function () {
     var countClient = 1;
     var countBankingAcc = 1;
     var countTransaction = 1;
-
+    var $load = $('<div class="spinner-border text-secondary" role="status"><span class="visually-hidden">Loading...</span></div>').appendTo('#loader');
     //
     //KIJENTI BAZA
     //
@@ -19,6 +19,7 @@ $(document).ready(function () {
     //listener dodavanja klijenta
 
     dbRefClient.on('child_added', (data) => {
+        $load.hide();
         var element = data.val();
         var elementkey = data.key;
         $('#table_client > tbody').append(
