@@ -411,3 +411,4 @@ function AddTransaction() {
         TipTransakcije: inputTypeTrans
     })
 }
+

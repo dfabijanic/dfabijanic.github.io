@@ -1,10 +1,4 @@
-@font-face {
-    font-family: 'mouse-300';
-    src: url("../fonts/PT_Sans-Web-Regular.ttf") format("truetype"); }
-  @font-face {
-    font-family: 'mouse-500';
-    src: url("../fonts/PT_Sans-Web-Bold.ttf") format("truetype"); }
-  /* ===================================== Basic CSS ================================== */
+
   * {
     margin: 0px;
     padding: 0px;
@@ -50,7 +44,7 @@ h3{
   .btn-info {
     background-color: #4f6dcd;
     border-color: #4f6dcd; 
-    color:white; !important}
+    color:white !important ;}
    
     .btn-info:hover {
       background-color: #4f6dcd !important;
