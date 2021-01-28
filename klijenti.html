@@ -1,352 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PIN-bank</title>
-    <link
-      rel="stylesheet"
-      href="assets/plugins/bootstrap/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
 
-    <!-- Navbar + logo + search + buttton Novi Klijent-->
-    <div class="container">
-      <div id="logo">
-        <img src="images/bank.png" alt="Bank logo" />
-      </div>
-      <nav class="navbar navbar-expand-lg navbar-light align-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.html"
-                  >Početna stranica</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="klijenti.html">Klijenti</a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="bankovni_racuni.html"
-                  tabindex="-1"
-                  aria-disabled="true"
-                  >Bankovni računi</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="transakcije.html"
-                  tabindex="-1"
-                  aria-disabled="true"
-                  >Transakcije</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div>
-          <form id="search" class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Pretraži
-            </button>
-          </form>
-          <button
-            type="button"
-            class="btn btn-"
-            data-bs-toggle="modal"
-            data-bs-target="#myModal"
-          >
-            + Novi klijent
-          </button>
-        </div>
-      </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIN-bank</title>
+  <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/plugins/jquery-confirm/jquery-confirm.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="assets/plugins/fontawesome/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Navbar + logo + search + buttton Novi Klijent-->
+  <div class="container">
+    <div id="logo">
+      <img src="images/bank.png" alt="Bank logo" />
     </div>
-
-       <!-- modal DETALJI KLIJENTA -->
-       <div
-       class="modal fade"
-       id="ModalDetailsClient"
-       data-bs-backdrop="static"
-       data-bs-keyboard="false"
-       tabindex="-1"
-       aria-labelledby="staticBackdropLabel"
-       aria-hidden="true"
-     >
-       <div class="modal-dialog modal-xl">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h5 class="modal-title" id="staticBackdropLabel">
-               Detalji o klijentu
-             </h5>
-             <button
-               type="button"
-               class="btn-close"
-               data-bs-dismiss="modal"
-               aria-label="Close"
-             ></button>
-           </div>
-           <div class="modal-body">
-             <label class="form-label">OIB</label>
-             <input type="text" class="form-control" id="detailsOIB" readonly />
-             <label class="form-label">Prezime</label>
-             <input
-               type="text"
-               class="form-control"
-               id="detailsLastName"
-               readonly
-             />
-             <label class="form-label">Ime</label>
-             <input
-               type="text"
-               class="form-control"
-               id="detailsFirstName"
-               readonly
-             />
-           </div>
-           <div id="acc_detail_name"></div>
-           <div class="modal-footer"></div>
-         </div>
-       </div>
-     </div>
-
-     <!-- modal UREDI KLIJENTA -->
-     <div
-     class="modal fade"
-     id="ModalEditClient"
-     data-bs-backdrop="static"
-     data-bs-keyboard="false"
-     tabindex="-1"
-     aria-labelledby="staticBackdropLabel"
-     aria-hidden="true"
-   >
-     <div class="modal-dialog modal-xl">
-       <div class="modal-content">
-         <div class="modal-header">
-           <h5 class="modal-title" id="BackdropLabel">
-             Uredi klijenta
-           </h5>
-           <button
-             type="button"
-             class="btn-close"
-             data-bs-dismiss="modal"
-             aria-label="Close"
-           ></button>
-         </div>
-         <div class="modal-body">
-           <label class="form-label">OIB</label>
-           <input type="text" class="form-control" id="EditOIB"/>
-           <label class="form-label">Prezime</label>
-           <input
-             type="text"
-             class="form-control"
-             id="EditLastName"
-           />
-           <label class="form-label">Ime</label>
-           <input
-             type="text"
-             class="form-control"
-             id="EditFirstName"
-           />
-         </div>
-         <div class="modal-footer">
-          <button type="submit" onclick="UpdateClient()" class="btn btn-primary">
-            Spremi
-          </button>
+    <nav class="navbar navbar-expand-lg navbar-light align-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Početna stranica</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="klijenti.html">Klijenti</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="bankovni_racuni.html" tabindex="-1" aria-disabled="true">Bankovni računi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="transakcije.html" tabindex="-1" aria-disabled="true">Transakcije</a>
+            </li>
+          </ul>
         </div>
-       </div>
-     </div>
-   </div>
+      </div>
+      <div>
+        <form id="search" class="d-flex">
+          <input class="form-control me-2" type="search" id='txt_searchall' placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        </form>
+        <button type="button" class="btn " id="btn-new" data-bs-toggle="modal" data-bs-target="#myModal" style =" margin-top: 2%; display: inline;">
+          Klijent <i class="fas fa-user-plus"> </i> 
+        </button>
+        <button id="btnLogout" class="btn btn-action hide" onclick="Logout()" style ="margin-left: 55%;display: inline;">Odjava</button>
+      </div>
+    </nav>
+  </div>
 
-    <!-- modal TRANSAKCIJA -->
-    <div
-    class="modal fade"
-    id="ModalClientAddTrans"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <!-- modal DETALJI KLIJENTA -->
+  <div class="modal fade" id="ModalDetailsClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="BackdropLabel">
-            Dodaj transakciju
-          </h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+        <div class="modal-header" id="modalclientDetails">
+          
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body" id="ClientTrans">
+        <div class="modal-body">
+          <h2 class="modal-title" id="formClientDetailAc">
+            Detalji o klijentu
+          </h2>
+          <form id="formClientDetail">
+          <label class="form-label">OIB</label>
+          <input type="text" class="form-control" id="detailsOIB" readonly />
+          <label class="form-label">Prezime</label>
+          <input type="text" class="form-control" id="detailsLastName" readonly />
+          <label class="form-label">Ime</label>
+          <input type="text" class="form-control" id="detailsFirstName" readonly />
         </div>
-        <div class="modal-footer">
-         <button type="submit" onclick="UpdateClientTrans()" class="btn btn-primary">
-           Spremi
-         </button>
-       </div>
+      
+        <div id="acc_detail_name"></div>
+      </form>
+        <div class="modal-footer"></div>
       </div>
     </div>
   </div>
 
-    <!-- modal NOVI KLIJENT -->
-    <div
-      id="myModal"
-      class="modal fade"
-      id="staticBackdrop"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header" id="modalclientback">
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <h2 id="formNewClient" class="title">Novi klijent</h2>
-            <form id="formClient">
-              <div class="form-floating mb-3">
-                <input
-                  class="form-control"
-                  id="inputOIB"
-                  placeholder="************"
-                />
-                <label for="inputOIB">OIB</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input
-                  class="form-control"
-                  id="inputLastName"
-                  placeholder="Horvat"
-                />
-                <label for="inputLastName">Prezime</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input
-                  class="form-control"
-                  id="inputFirstName"
-                  placeholder="Ivan"
-                />
-                <label for="inputFirstName">Ime</label>
-              </div>
-              <p>
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTekuci"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  +Tekući račun
-                </button>
-              </p>
-              <div class="collapse" id="collapseTekuci">
-                <div class="card card-body">
-                  <div class="form-floating mb-3">
-                  <input
-                  class="form-control"
-                  id="inputNumberAccTek"
-                  placeholder="******************"
-                />
-                <label for="inputNumberAccTek">Broj računa</label>
-                  </div>
-                </div>
-              </div>
-              <p>
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseZiro"
-                  aria-expanded="false"
-                  aria-controls="collapseExample"
-                >
-                  +Žiro račun
-                </button>
-              </p>
-              <div class="collapse" id="collapseZiro">
-                <div class="card card-body">
-                  <div class="card card-body">
-                    <div class="form-floating mb-3">
-                    <input
-                    class="form-control"
-                    id="inputNumberAccZiro"
-                    placeholder="******************"
-                  />
-                  <label for="inputNumberAccZiro">Broj računa</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" onclick="AddClient()" class="btn btn-primary">
-              Spremi
-            </button>
-          </div>
+  <!-- modal UREDI KLIJENTA -->
+  <div class="modal fade" id="ModalEditClient" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header" id="modalClientAddTrans">         
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2 class="modal-title" id="formClientEditAcc">
+            Uredi klijenta
+          </h2>
+          <form id="formClientEdit">
+          <label class="form-label">OIB</label>
+          <input type="text" class="form-control" id="EditOIB" disabled/>
+          <label class="form-label">Prezime</label>
+          <input type="text" class="form-control" id="EditLastName" onkeyup="this.value=this.value.replace(/[^A-z]/g,'');"/>
+          <label class="form-label">Ime</label>
+          <input type="text" class="form-control" id="EditFirstName" onkeyup="this.value=this.value.replace(/[^A-z]/g,'');"/>
+        </div>
+      </form>
+        <div class="modal-footer">
+          <button type="submit" onclick="UpdateClient()" class="btn btn-primary">
+            Spremi
+          </button>
         </div>
       </div>
     </div>
-    <!-- <div id="loader" ></div> -->
-    <!-- tablica KLIJENTI -->
-    <table
-      id="table_client"
-      class="table table-responsive table-striped table-hover table-bordered"
-    >
-      <thead>
-        <tr>
-          <th scope="col">Redni broj</th>
-          <th scope="col">OIB</th>
-          <th scope="col">Prezime</th>
-          <th scope="col">Ime</th>
-          <th scope="col">Akcije</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  </div>
 
-    <!--script-->
-    <script src="assets/plugins/jquery/jquery.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/klijenti.js"></script>
-  </body>
+  <!-- modal TRANSAKCIJA -->
+  <div class="modal fade" id="ModalClientAddTrans" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header" id="modalClientAddTrans">
+         
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="ClientTrans">
+          <h2 class="modal-title" id="modalClientAddTranAc">
+            Dodaj transakciju
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal NOVI KLIJENT -->
+  <div id="myModal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" id="modalclientback">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h2 id="formNewClient" class="title">Novi klijent</h2>
+          <form id="formClient">
+           
+            <div class="tt">
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputOIB" placeholder="************" name="inputOIB" />
+              <label for="inputOIB">OIB</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputLastName" placeholder="Horvat" name="inputLastName" />
+              <label for="inputLastName">Prezime</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input class="form-control" id="inputFirstName" placeholder="Ivan" name="inputFirstName" />
+              <label for="inputFirstName">Ime</label>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-primary" id="currentButton" type="button" onclick="generateBancAccNumber(this.id, '#inputNumberAccTek', '#showTekuci', '#UkloniTekuci')">
+                  +Tekući račun
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-primary" id="UkloniTekuci" type="button" onclick="removeAcc(this.id, '#inputNumberAccTek', '#showTekuci', '#currentButton')" hidden>
+                  -Ukloni račun
+                </button>
+              </div>
+            </div>
+            <div id="collapseTekuci">
+              <div class="card card-body border-0">
+                <div class="form-floating mb-3" id="showTekuci" hidden>
+                  <input class="form-control send" id="inputNumberAccTek" placeholder="******************" readonly name="bankAccTek"
+                    />
+                  <label for="inputNumberAccTek">Broj računa</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+              <button class="btn btn-primary mt-2" type="button" 
+                id="currentZiro" aria-expanded="false" aria-controls="collapseExample"
+                onclick="generateBancAccNumber(this.id, '#inputNumberAccZiro', '#showZiro', '#UkloniZiro')">
+                +Žiro račun
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-primary" id="UkloniZiro" type="button" onclick="removeAcc(this.id, '#inputNumberAccZiro', '#showZiro', '#currentZiro')" hidden>
+                -Ukloni račun
+              </button>
+            </div>
+            </div>
+            <div id="collapseZiro">
+              <div class="card card-body border-0">
+                <div class="form-floating mb-3" id="showZiro" hidden>
+                  <input class="form-control send" id="inputNumberAccZiro" placeholder="******************" readonly name="bankAccZiro"
+                    />
+                  <label for="inputNumberAccZiro">Broj računa</label>
+                </div>
+              </div>
+            </div>
+            <div id="ErrMess"></div>           
+            <button id="btnAddClient" hidden type="submit">Sub</button>
+          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" onclick="Click()">
+            Spremi
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="loader" ></div> -->
+  <!-- tablica KLIJENTI -->
+  <table id="table_client" class="table table-responsive table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Redni broj <i class="fas fa-sort"></i></th>
+        <th scope="col">OIB <i class="fas fa-sort"></i></th>
+        <th scope="col" id="LastName">Prezime <i class="fas fa-sort"></i></th>
+        <th scope="col" id="FirstName">Ime <i class="fas fa-sort"></i></th>
+        <th scope="col">Akcije</th>
+      </tr>
+      <!-- Display this <tr> when no record found while search -->
+      <tr class='notfound'>
+        <td colspan='5'>Nema rezultata</td>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <!--script-->
+  <script src="assets/plugins/jquery/jquery.js"></script>
+  <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+  <script src="assets/plugins/jquery-validation/additional-methods.min.js"></script>
+  <script src="assets/plugins/jquery-confirm/jquery-confirm.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-auth.js"></script>
+  <script src="assets/plugins/moment/moment.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/klijenti.js"></script>    
+  <script src="js/redirect.js"></script>
+</body>
+
 </html>
