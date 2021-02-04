@@ -249,6 +249,7 @@ $.extend($.validator.messages,{
     //
 
     //listener dodavanja klijenta
+    $('#spinner-client').show();
     dbRefClient.on('child_added', (data) => {
 
         var element = data.val();
@@ -267,7 +268,8 @@ $.extend($.validator.messages,{
               </div></td>
           </tr>`
         )
-
+        $('#spinner-client').hide();
+        $('#table_client').show();
     })
 
     //datalist postojecih klijenata
@@ -275,7 +277,7 @@ $.extend($.validator.messages,{
         data.forEach(element => {
             var elements = element.val();
             var elementkey = element.key;
-            $('#datalistOptionsClients').append(`<option value="${elementkey}">${elements.Prezime} ${elements.Ime}</option>`);
+            $('#datalistOptionsClients').append(`<option value="${elements.Prezime} ${elements.Ime}" data-oib="${elementkey}">${elements.Prezime} ${elements.Ime}</option>`);
         });
     })
 
@@ -307,6 +309,7 @@ $.extend($.validator.messages,{
     //
 
     //realtime citanje bankovnih racuna
+    $('#spinner-banc').show();
     dbRefBankingAcc.on('child_added', function (snap) {
 
         var element = snap.val();
@@ -324,9 +327,9 @@ $.extend($.validator.messages,{
                     <button type="button" class="btn btn-secondary actions remove"><i class="fas fa-trash-alt"></i></button>
                   </div></td>
               </tr>`
-
         )
-
+        $('#spinner-banc').hide();
+        $('#table_bankacc').show();
     });
 
     dbRefBankingAcc.on('child_removed', (data) => {
@@ -348,6 +351,7 @@ $.extend($.validator.messages,{
     //
 
     //realtime citanje transakcija
+    $('#spinner-trans').show();
     dbRefTransaction.on('child_added', function (snap) {
 
         var element = snap.val();
@@ -362,12 +366,13 @@ $.extend($.validator.messages,{
                 <td>${element.Iznos}</td>
                 <td><div>
                     <button type="button" id="detalji" class="btn btn-secondary actions details" data-bs-toggle="modal" onclick="DetailsTrans()" data-bs-target="#staticBackdrop"><i class="fas fa-info-circle"></i></button>
-                    <button type="button" class="btn btn-secondary actions"><i class="fas fa-edit"></i></button>
                     <button type="button" class="btn btn-secondary actions remove"><i class="fas fa-trash-alt"></i></button>
                   </div></td>
               </tr>`
 
         )
+        $('#spinner-trans').hide();
+        $('#table_trans').show();
 
     });
 
@@ -500,6 +505,7 @@ $.extend($.validator.messages,{
         $('#EditStateAcc').val(accState);
         $('#ClientAcc').val(accClient);
     });
+
     //Modal brisanje bankovnog racuna
     $('#table_bankacc').on('click', '.remove', function () {
         var currentRow = $(this).closest('tr');
@@ -663,12 +669,12 @@ $.extend($.validator.messages,{
     });
 
 
-    window.onload = function () { makeAllSortable(); };
+   makeAllSortable();
 
 
 });
 
-//SORTIRANJE
+// //SORTIRANJE
 
 //da izbjegne malo veliko slovo
 $.expr[":"].contains = $.expr.createPseudo(function (arg) {
@@ -1008,20 +1014,20 @@ function DetailsBankingAcc(accNumber, accTypeAcc) {
 
     var $tbody = $table.append('<tbody />').children('tbody');
 
+    var datums = [];
     dbRefTransaction.orderByChild('Datum').on('value', function (snap) {
-        var datums = [];
         snap.forEach((childSnapshot) => {
 
             var element = childSnapshot.val();
                
-
             if (element.BrojRacuna === accNumber) {
                 datums.push(childSnapshot)            
-            }
-
-           
+            }    
 
         })
+    });
+
+    datums.reverse();
         datums.forEach((childSnapshot) =>{
             let TransElementKey = childSnapshot.key;
             let TransElement = childSnapshot.val();
@@ -1038,21 +1044,17 @@ function DetailsBankingAcc(accNumber, accTypeAcc) {
             $tbody.append('<tr />').children('tr:last')
                 .append(`<td colspan="5">Racun još nema izvršenih transakcija</td>`).addClass('text-center')
         }
-    });
+    
 }
 
 //dodavanje novog bankovnog racuna
 function AddBankingAcc() {
     var val = $("#ClientsDataList").val();
+    var obj = $("#datalistOptionsClients").find("option[value='" + val + "']");
+    var oib = obj.data('oib');
 
-var obj = $("#datalistOptionsClients").find("option[value='" + val + "']");
-// var val = $('#ClientsDataList').val()
-//         var xyz = $('#datalistOptionsClients option').filter(function() {
-//             return this.value == val;
-//         }).data('oib');
-//         var msg = xyz ? 'xyz=' + xyz : 'No Match';
-//         alert(msg)
 if(obj != null && obj.length > 0) {
+    
     $('#DataListErr').text("");
          $("#formAcc").validate({
             errorElement: 'div',
@@ -1080,7 +1082,7 @@ if(obj != null && obj.length > 0) {
                     buttons: {
                         Spremi: function () {
     
-                            const inputOIBClient = $('#ClientsDataList').val();
+                            const inputOIBClient = oib;
                             const StateAcc = 0;
                             const inputNumberAcc = $('#inputNumberAcc').val();
                             const inputTypeAcc = $('#selectTypeAcc').val();

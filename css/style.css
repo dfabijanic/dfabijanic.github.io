@@ -91,4 +91,9 @@ display:block;
     margin:0.2em auto;
     }
 }
-    
+
+#spinner-client, #spinner-banc, #spinner-trans{
+    margin-top: 10%;
+    width: 3rem; 
+    height: 3rem;
+}
