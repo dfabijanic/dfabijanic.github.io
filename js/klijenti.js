@@ -858,7 +858,7 @@ function ClientAddTrans(clientOib) {
               <div class="collapse" id="${randidsl}">
                 <div class="card card-body">
                 <form id="formClient${randidsl}">
-                <input id="datetrans${randidsl}" type="date" name="datetrans${randidsl}"/>
+                <input id="datetrans${randidsl}" class="form-control" type="date" name="datetrans${randidsl}" style="margin-bottom: 10px;"/>
                 <div class="form-floating mb-3">
                   <input
                     class="form-control"
